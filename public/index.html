@@ -31,6 +31,10 @@
       `);
     };
 
+    socket.on("receivedMessage", message => {
+      renderMessage(message);
+    });
+
     $("#chat").submit(event => {
       event.preventDefault();
       let autor = $("input[name=username]").val();
