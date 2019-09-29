@@ -21,5 +21,19 @@
 
   <script type="text/javascript">
     let socket = io("http://localhost:3000");
+
+    $("#chat").submit(event => {
+      event.preventDefault();
+      let autor = $("input[name=username]").val();
+      let message = $("input[name=message]").val();
+
+      if (autor.length && message.length) {
+        let messageObj = {
+          autor: autor,
+          message: message
+        };
+        socket.emit("sendMessage", messageObj);
+      }
+    });
   </script>
 </html>
