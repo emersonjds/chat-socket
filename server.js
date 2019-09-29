@@ -15,8 +15,12 @@ app.use("/", (req, res) => {
   res.render("index.html");
 });
 
+let messages = [];
+
 io.on("connection", socket => {
   console.log(`socket conectado", ${socket.id}`);
+
+  socket.emit("previosMessage", messages);
 
   socket.on("sendMessage", data => {
     socket.broadcast.emit("receivedMessage", data);

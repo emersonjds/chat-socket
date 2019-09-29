@@ -31,6 +31,10 @@
       `);
     };
 
+    socket.on("previosMessage", messages => {
+      messages.map(message => renderMessage(message));
+    });
+
     socket.on("receivedMessage", message => {
       renderMessage(message);
     });
